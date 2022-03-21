@@ -1,0 +1,116 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Product Records</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    {% load static %}
+ 
+</head>  
+<body>  
+
+    <style>
+
+      body {
+        font: 17px/1.4 Verdana, Arial;
+        background: #dbdbdb;
+        height: 100%;
+        margin: 50px 50px;
+        padding: 2;
+      }
+      h1 {
+        font: 25px Georgia, Verdana;
+        font-size: .5cm;
+        margin: 0;
+        text-align: center;
+      }
+      h3 {
+        background-color: rgb(2, 0, 80);
+        font: 15px/1.4 Verdana, Arial;
+        font-size: 50px;
+        font-weight: 400;
+        margin: 0 0 20px;
+        text-align: center;
+        color: lightblue;
+      }
+      p {
+        margin-top: 0;
+      }
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+  
+  
+  
+      .row{
+        text-align: center;
+        padding: .2cm;
+        size: 10cm;
+      }
+  
+      .btn {
+        font: 17px Arial, Verdana;
+        margin-bottom: 10px;
+        padding: 10px 80px 10px;
+  
+        border: 1px solid #ccc;
+        background: rgb(2, 0, 80);
+        cursor: pointer;
+        
+      }
+  
+      .btn:hover {
+        border: 1px solid #bbb;
+        background: white;
+        color: rgb(2, 0, 80);
+      }
+    
+      </style>
+
+
+ 
+      <div>        
+            <h3>PRODUCT LIST</h3>
+      </div> 
+
+
+<table class="table table-striped table-bordered table-lg ">  
+    <thead class="thead-dark">  
+    <tr>  
+        <th>Product NAME</th>  <br>
+        <th>Product PRICE</th>  <br>
+        <th>Product QUANTITY</th>  <br>
+        <th>Product IMAGE</th>  <br>
+        <th>Actions</th>  <br>
+    </tr>  
+    </thead>  
+    <tbody>  
+{% for product in prdcts %}  
+    <tr>
+        <td>{{ product.productname }}</td>  
+        <td>{{ product.productprice }}</td>  
+        <td>{{ product.productquantity }}</td>  
+        
+          {% comment %} <img src="{{ product.productimage.url }}" width="200"> {% endcomment %}
+        {% if product.productimage == '/static/image/shoe.png' %}
+            <td><img src="{% static 'image/shoe.png' %}" width="200"></td>
+        {% else %}
+            <td><img src="{{ product.productimage.url }}" width="200"></td>
+                {% comment %} src="/{{ product.productimage.url }}" {% endcomment %}
+        {% endif %}
+        <td> 
+            <a href="/edit/{{ product.id }}">Edit</a>  <br><br>
+            <a href="/delete/{{ product.id }}">Delete</a>  <br><br>
+            <a href="/add_image/{{ product.id }}">Add Image</a>
+        </td>  
+    </tr>
+{% endfor %}  
+    </tbody>  
+</table>  
+<br>  
+<br>  
+<center><a href="/" class="btn btn-primary">Add New Record</a></center>  
+</body>  
+</html>

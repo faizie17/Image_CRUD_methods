@@ -1,0 +1,226 @@
+{% comment %} <!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Edit Products</title>  
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    {% load crispy_forms_tags %}
+
+</head>  
+<body>  
+
+  <style>
+
+    body {
+      font: 20px/1.4 Verdana, Arial;
+      background: lightblue;
+      height: 100%;
+      margin: 50px 50px;
+      padding: 2;
+    }
+    h1 {
+      font: 24px Georgia, Verdana;
+      font-size: .5cm;
+      margin: 0;
+      text-align: center;
+    }
+    h3 {
+      background-color: rgb(2, 0, 80);
+      font: 12px/1.4 Verdana, Arial;
+      font-size: 50px;
+      font-weight: 400;
+      margin: 0 0 20px;
+      text-align: center;
+      color: lightblue;
+    }
+    p {
+      margin-top: 0;
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+
+
+    .row{
+      text-align: center;
+      padding: .2cm;
+      size: 10cm;
+    }
+
+    .btn {
+      font: 17px Arial, Verdana;
+      margin-bottom: 10px;
+      padding: 10px 80px 10px;
+
+      border: 1px solid #ccc;
+      background: rgb(2, 0, 80);
+      cursor: pointer;
+      
+    }
+
+    .btn:hover {
+      border: 1px solid #bbb;
+      background: lightblue;
+      color: rgb(2, 0, 80);
+    }
+
+  </style>
+
+
+<form method="POST" class="post-form" action="/update/{{products.id}}">  
+        {% csrf_token %}   
+<br>   
+    <div>  
+    <h3>UPDATE PRODUCT DETAILS</h3>  
+    </div>  
+  </div>  
+    <div>  
+    <label>PRODUCT NAME:</label>  
+    <div >  
+        <input type="text" id="id_productname" required maxlength="20" value="{{ products.productname }}"/>  
+    </div>  
+  </div>  
+  <div >  
+    <label >PRODUCT PRICE:</label>  
+    <div >  
+        <input type="text" id="id_productprice" required maxlength="100" value="{{ products.productprice }}" />  
+    </div>  
+  </div>  
+    <div >  
+    <label >PRODUCT QUANTITY:</label>  
+    <div>  
+        <input id="id_productquantity" maxlength="254" value="{{ products.productquantity }}" />  
+    </div>  
+  </div>  
+    <div >  
+    <label >PRODUCT IMAGE:</label>  
+    <div>  
+        <input id="id_productimage" maxlength="15" value="{{ products.productimage }}" />  
+    </div>  
+  </div>  <br>
+    <div >  
+    <button type="submit" class="btn btn-success">Update</button>  
+  </div>  
+    </div>  
+</form>
+</body>  
+</html>  
+ {% endcomment %}
+
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Index</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</head>  
+<body>  
+
+  <style>
+
+    body {
+      font: 20px/1.4 Verdana, Arial;
+      background: #dbdbdb;
+      height: 100%;
+      margin: 50px 50px;
+      padding: 2;
+    }
+    h1 {
+      font: 25px Georgia, Verdana;
+      font-size: .5cm;
+      margin: 0;
+      text-align: center;
+    }
+    h3 {
+      background-color: rgb(2, 0, 80);
+      font: 15px/1.4 Verdana, Arial;
+      font-size: 50px;
+      font-weight: 400;
+      margin: 0 0 20px;
+      text-align: center;
+      color: lightblue;
+    }
+    p {
+      margin-top: 0;
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+
+
+    .row{
+      text-align: center;
+      padding: .2cm;
+      size: 10cm;
+    }
+
+    .btn {
+      font: 17px Arial, Verdana;
+      margin-bottom: 10px;
+      padding: 10px 80px 10px;
+
+      border: 1px solid #ccc;
+      background: rgb(2, 0, 80);
+      cursor: pointer;
+      
+    }
+
+    .btn:hover {
+      border: 1px solid #bbb;
+      background: white;
+      color: rgb(2, 0, 80);
+    }
+
+  </style>
+
+
+<form method="post" class="post-form" action="/update_data/{{product.id}}" enctype="multipart/form-data">  
+        {% csrf_token %}  
+     
+<br>  
+    <div>    
+    <h3>Update Details</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">PRODUCT NAME:</label>  
+    <div class="col-sm-4">  
+        <input type="text" id="id_productname" required maxlength="20" value="{{ product.productname }}" name="upname"/>  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">PRODUCT PRICE:</label>  
+    <div class="col-sm-4">  
+        <input type="text" id="id_productprice" required maxlength="100" value="{{ product.productprice }}" name="upprice"/>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">PRODUCT QUANTITY:</label>  
+    <div class="col-sm-4">  
+        <input type= "text" id="id_productquantity" maxlength="20" value="{{ product.productquantity }}" name="upquantity"/>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">PRODUCT IMAGE:</label>  
+    <div class="col-sm-4">  
+      <input type= "file" id="id_productimage" maxlength="20" accept="image/*" name="upimage"/>  
+
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-success">Update</button>  
+    </div>  
+  </div>  
+
+</form>  
+</body>  
+</html>  
